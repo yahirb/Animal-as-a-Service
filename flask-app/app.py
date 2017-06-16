@@ -3,6 +3,13 @@ import random
 
 app = Flask(__name__)
 
+
+crimefile = open('animal-list.txt', 'r')
+list = []
+for line in crimefile.readlines():
+    list.append(line)
+print (list)
+
 # list of cat images
 images = [
     "http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr05/15/9/anigif_enhanced-buzz-26388-1381844103-11.gif",
