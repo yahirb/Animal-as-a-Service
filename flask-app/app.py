@@ -1,14 +1,11 @@
 from flask import Flask, render_template
 import random
+import requests
 
 app = Flask(__name__)
 
 
-crimefile = open('animal-list.txt', 'r')
-list = []
-for line in crimefile.readlines():
-    list.append(line)
-print (list)
+
 
 # list of cat images
 images = [
@@ -26,10 +23,13 @@ images = [
     "http://ak-hdl.buzzfed.com/static/2013-10/enhanced/webdr03/15/10/anigif_enhanced-buzz-11980-1381846269-1.gif"
 ]
 
+response = requests.get("http://api.open-notify.org/iss-now.json")
+
+
 @app.route('/')
 def index():
     url = random.choice(images)
     return render_template('index.html', url=url)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0", debug = True)
