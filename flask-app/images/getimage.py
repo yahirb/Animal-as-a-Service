@@ -2,6 +2,7 @@ import requests
 import json
 import random
 import os
+from scripts.random_name import getRandomName
 
 
 def getAnimalObject(animalName):
@@ -22,9 +23,11 @@ def getAnimalObject(animalName):
     animalURL = ''
     for item in items:
         animalURL = item['link']
+    nickname = getRandomName('scripts/random-name-list.txt')
     animalObject = {
                     'name' : animalName,
-                    'URL' : animalURL
+                    'URL' : animalURL,
+                    'nickname' : nickname
     }
     return animalObject
 
@@ -35,31 +38,33 @@ def getAnimalName(textfile):
     randomNumber = random.randint(0, len(imageList) - 1)
     animalName = imageList[randomNumber]
     return animalName
-def readFile():
-    for line in open(textfile,'r'):
-        imageList.append(line)
-def writeFile(animalObject):
-    fo = open("next-animal.txt", "w")
-    fo.write("Python is a great language.\nYeah its great!!\n");
-    fo.close()
 
-def main():
-    my_path = "next-animal.txt"
-    if os.path.exists(my_path):
-        print('true')
+def getImageURL(my_path):
+    if os.path.exists(my_path) and (os.path.getsize(my_path) == 0):
+        animalName = getAnimalName('images/animal-list.txt')
+        animalObject = getAnimalObject(animalName)
+        animalNameTemp = getAnimalName('images/animal-list.txt')
+        animalObjectTemp = getAnimalObject(animalNameTemp)
+        f = open(my_path, 'w')
+        f.write(animalObjectTemp['name'] + animalObjectTemp['URL'])  #
+        f.close()
+        return animalObject
     else:
-        print('false')
-    """
-    if os.path.exists(my_path) and os.path.getsize(my_path) < 0:
-        name = getAnimalName('/Docker/flask-app/animal-list.txt')
-        print (name)
-    else:
-        print("failure")
-    """
-main()
-# if file empty
-    # get two objects, save the second
-# else
-    # read object from file
-    # erase file
-    # get one object and add to file
+        animalObject = {}
+        f = open(my_path, 'r')
+        animalObject['name'] = f.readline()
+        animalObject['URL'] = f.readline()
+        animalObject['nickname'] = f.readline()
+        f.close()
+        # Erase File
+        open(my_path, 'w').close()
+
+        animalNameTemp = getAnimalName('images/animal-list.txt')
+        animalObjectTemp = getAnimalObject(animalNameTemp)
+
+        f = open(my_path, 'w')
+        f.write(animalObjectTemp['name'] + animalObjectTemp['URL']  + '\n')
+        f.write(animalObjectTemp['nickname'] + '\n')
+        f.close()
+
+        return animalObject;
