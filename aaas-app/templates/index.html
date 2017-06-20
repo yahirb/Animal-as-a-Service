@@ -1,5 +1,15 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+    integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+    <!-- Temporary CSS -->
     <style type="text/css">
       body {
         background: black;
@@ -17,13 +27,16 @@
         text-transform: uppercase;
       }
     </style>
+
     <title>Animals Attack 9</title>
   </head>
   <body>
-    <div class="container" id="outer">
+    <div class="container" >
       <h4>Say Hello to {{randomName}} the {{animalName}}</h4>
       <h5>Refresh the page to meet {{randomNameNext}} the {{animalNameNext}}</h5>
-      <img src={{url}} />
+      <div class="container-narrow" id="outer">
+        <img src={{url}} />
+      </div>
     </div>
   </body>
 </html>
