@@ -10,13 +10,14 @@
 
     <!-- Custom CSS file -->
     <link rel="stylesheet" href="/static/css/custom.css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <title>Animals Attack 9</title>
   </head>
   <body>
 
     <div class="container" id="div1">
-      <h4>Say Hello to {{randomName}} the {{animalName}}</h4>
-      <h5>Click the on {{randomName}} to meet {{randomNameNext}} the {{animalNameNext}}</h5>
+      <h4>This is {{randomName}} the {{animalName}}!</h4>
+      <h5>Click on {{randomName}} to meet {{randomNameNext}} the {{animalNameNext}}</h5>
 
       <div class="container-narrow" id="outer">
         <form class="" action="" method="post">
@@ -25,7 +26,6 @@
           </button>
         </form>
       </div>
-
     </div>
 
 
