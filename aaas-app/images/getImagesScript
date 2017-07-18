@@ -1,0 +1,55 @@
+########### Python 3.2 #############
+import http.client, urllib.request, urllib.parse, urllib.error, base64
+import json
+
+# Returns list of URLs
+def imageURLSearch(searchTerm):
+    headers = {
+        # Request headers
+        'Ocp-Apim-Subscription-Key': '542b275938cd471790ddf38ee94a2d7d',
+    }
+
+    params = urllib.parse.urlencode({
+        # Request parameters
+        'q': searchTerm,
+        'count': '10',
+        'offset': '0',
+        'mkt': 'en-us',
+        'safesearch': 'Moderate',
+        'size': 'Large'
+    })
+
+    conn = http.client.HTTPSConnection('api.cognitive.microsoft.com')
+    conn.request("GET", "/bing/v5.0/search?%s" % params, "{body}", headers)
+    response = conn.getresponse()
+    data = response.read()
+    result = json.loads(data)
+    # Checks for image results
+    if 'images' in result:
+        image_dicts = result['images']['value']
+        image_url_list = []
+        for image_dict in image_dicts:
+            image_url = image_dict['contentUrl']
+            image_url_list.append(image_url)
+        conn.close()
+        return image_url_list
+    else:
+        return ['URL NOT FOUND']
+
+# Read animal list file
+animalNames = []
+with open("animal-data.txt", "r") as json_data:
+    animalNames = json.load(json_data)
+# list of dictionaries containing animal name as key and list of URLS as value
+animalObjects = []
+for animalName in animalNames:
+    animalURLS = imageURLSearch(animalName)
+    animalObject = {animalName : animalURLS}
+    animalObjects.append(animalObject)
+    print (animalName)
+# Write to data file
+f = open('animal-data-new.txt', 'w')
+f.write(json.dumps(animalObjects))
+f.close()
+
+print (animalObjects)

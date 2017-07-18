@@ -41,9 +41,9 @@ def getAnimalName(textfile):
 
 def getImageURL(my_path):
     if os.path.exists(my_path) and (os.path.getsize(my_path) == 0):
-        animalName = getAnimalName('images/animal-list.txt')
+        animalName = getAnimalName('images/animal-common-list.txt')
         animalObject = getAnimalObject(animalName)
-        animalNameTemp = getAnimalName('images/animal-list.txt')
+        animalNameTemp = getAnimalName('images/animal-common-list.txt')
         animalObjectTemp = getAnimalObject(animalNameTemp)
         f = open(my_path, 'w')
         f.write(animalObjectTemp['name'] + animalObjectTemp['URL'])  #
@@ -59,7 +59,7 @@ def getImageURL(my_path):
         # Erase File
         open(my_path, 'w').close()
 
-        animalNameTemp = getAnimalName('images/animal-list.txt')
+        animalNameTemp = getAnimalName('images/animal-common-list.txt')
         animalObjectTemp = getAnimalObject(animalNameTemp)
 
         f = open(my_path, 'w')
