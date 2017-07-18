@@ -3,6 +3,7 @@ body {
   color: white;
 }
 #outer { overflow:hidden; }
+
 div.container {
   max-width: 500px;
   margin: 100px auto;
