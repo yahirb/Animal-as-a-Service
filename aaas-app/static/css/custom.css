@@ -1,14 +1,24 @@
-body {
-  background: black;
-  color: white;
+body{
+ background-color: #000000;
+ padding: 0px;
+ margin: 0px;
 }
+
+#gradient
+{
+  width: 100%;
+  height: 800px;
+  padding: 0px;
+  margin: 0px;
+}
+
 #outer { overflow:hidden; }
 
 div.container {
   max-width: 500px;
   margin: 100px auto;
-  border: 20px solid white;
-  padding: 10px;
+  border: 5px solid white;
+  padding: 20px;
   text-align: center;
 }
 h4 {
