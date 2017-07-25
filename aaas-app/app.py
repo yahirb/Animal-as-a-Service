@@ -4,7 +4,7 @@ import requests
 from images.getimage import getImageURL
 from scripts.random_name import getRandomName
 from scripts.next_animal import getNextAnimalObject
-
+from images.get_images import randomAnimalObject
 app = Flask(__name__)
 
 
