@@ -10,7 +10,7 @@ import random
 def imageURLSearch(searchTerm):
     headers = {
         # Request headers
-        'Ocp-Apim-Subscription-Key': '542b275938cd471790ddf38ee94a2d7d',
+        'Ocp-Apim-Subscription-Key': 'key',
     }
 
     params = urllib.parse.urlencode({
@@ -63,8 +63,18 @@ def convertToObjects():
 # and returns an object containing a single dictionary
 def randomAnimalObject():
     animalObjects = []
-    with open('animal-data-modified.txt', "r") as json_data:
+    with open('images/animal-data-modified.txt', "r") as json_data:
         animalObjects = json.load(json_data)
     randomNumber = random.randint(0, len(animalObjects) - 1)
     randomAnimal = animalObjects[randomNumber]
     return randomAnimal
+
+
+
+def getRandomNickname(textfile):
+    nameList = []
+    for line in open(textfile,'r'):
+        nameList.append(line)
+    randomNumber = random.randint(0, len(nameList) - 1)
+    randomName = nameList[randomNumber]
+    return randomName
